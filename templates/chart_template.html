@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Chart</title>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            background: white;
+        }
+        #container {
+            width: 800px;
+            height: 400px;
+        }
+        #title {
+            text-align: center;
+            font-family: sans-serif;
+            font-size: 18px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+<div id="title"></div>
+<div id="container"></div>
+<div id="chart-ready" style="display:none;"></div>
+
+<script src="https://unpkg.com/lightweight-charts@4.1.1/dist/lightweight-charts.standalone.production.js"></script>
+<script>
+    window.renderChart = function (ohlc, title) {
+        document.getElementById('title').textContent = title || '';
+
+        const chart = LightweightCharts.createChart(document.getElementById('container'), {
+            layout: { background: { color: '#fff' }, textColor: '#000' },
+            grid: { vertLines: { color: '#eee' }, horzLines: { color: '#eee' } },
+            crosshair: { mode: 0 },
+            priceScale: { borderColor: '#ccc' },
+            timeScale: { borderColor: '#ccc', timeVisible: true, secondsVisible: true },
+        });
+
+        const series = chart.addCandlestickSeries();
+
+        const data = ohlc.map(c => ({
+            time: Math.floor(c.time), // важливо: time у секундах!
+            open: c.o,
+            high: c.h,
+            low: c.l,
+            close: c.c,
+        }));
+
+        series.setData(data);
+
+        setTimeout(() => {
+            document.getElementById('chart-ready').style.display = 'block';
+        }, 500);
+    };
+</script>
+</body>
+</html>

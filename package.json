@@ -1,0 +1,22 @@
+{
+  "name": "nadaraya-watson",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chartjs-chart-financial": "^0.2.1",
+    "chartjs-node-canvas": "^5.0.0",
+    "dotenv": "^16.5.0",
+    "form-data": "^4.0.3",
+    "node-fetch": "^2.7.0",
+    "puppeteer": "^24.10.2",
+    "telegraf": "^4.16.3"
+  }
+}
